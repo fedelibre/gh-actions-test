@@ -28,9 +28,8 @@ jobs:
         name: Install gettext on Windows
         run: |
           iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-          scoop bucket add main
           scoop install main/gettext
-        shell: pwsh
+        #shell: pwsh
       - if: matrix.target == 'macOS'
         name: Install gettext on macOS
         run: |
