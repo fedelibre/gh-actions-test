@@ -30,10 +30,10 @@ jobs:
           iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
           scoop bucket add main
           scoop install main/gettext
-          msgfmt --version
         shell: pwsh
       - if: matrix.target == 'macOS'
         name: Install gettext on macOS
         run: |
           brew install gettext
-          msgfmt --version
+      - name: Check msgfmt
+        run: msgfmt --version
