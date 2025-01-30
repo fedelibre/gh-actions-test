@@ -9,11 +9,12 @@ jobs:
   ci:
     name: Install gettext
     runs-on: windows-latest
-    strategy:
-      fail-fast: false
-    run: |
-      iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-      scoop bucket add main
-      scoop install main/gettext
-      msgfmt --version
-    shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install gettext on Windows
+        run: |
+          iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+          scoop bucket add main
+          scoop install main/gettext
+          msgfmt --version
+        shell: pwsh
