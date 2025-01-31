@@ -9,6 +9,9 @@ jobs:
   ci:
     name: Install gettext
     runs-on: ${{ matrix.runs-on }}
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
