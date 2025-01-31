@@ -26,13 +26,16 @@ jobs:
       - uses: actions/checkout@v4
       - if: matrix.target == 'Windows'
         name: Install gettext on Windows
+        shell: pwsh
         run: |
           iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
           scoop install main/gettext
-        #shell: pwsh
+          $env:PATH -split ';'
       - if: matrix.target == 'macOS'
         name: Install gettext on macOS
         run: |
           brew install gettext
       - name: Check msgfmt
-        run: msgfmt --version
+        run: |
+          echo $PATH
+          msgfmt --version
