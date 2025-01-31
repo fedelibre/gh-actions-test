@@ -40,5 +40,6 @@ jobs:
           brew install gettext
       - name: Check msgfmt
         run: |
-          echo $PATH
+          export PATH=/c/Users/runneradmin/scoop/shims:$PATH
+          echo $PATH | tr ':' '\n'
           msgfmt --version
