@@ -1,0 +1,23 @@
+name: Grep string from file
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  ci:
+    name: Grep string
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: save string to environment variable and use it
+        run: |
+          export VERSION=`sed -n 's/^version = "\(.*\)"/\1/p' project.toml`
+          echo $VERSION
+          touch release.txt
+          mv release.txt release-$VERSION.txt
+          ls
+
